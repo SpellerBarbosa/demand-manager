@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme{
+    --animate-regressive: regressive 3s ease-in reverse;
+    --animate-popup: popup .4s ease-in ;
+
+    @keyframes regressive{
+        0% {
+            width: 0%;
+        },
+        100%{
+            width: 100%;
+        }
+    }
+
+    @keyframes popup {
+        0%{
+            top: -40px
+        }
+        100%{
+            top: 8px
+        }
+    }
+}
+
+.bg-home{
+    background-image: url(../img/logo.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    
+}
