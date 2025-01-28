@@ -1,8 +1,10 @@
 <script setup>
 import { watchEffect } from 'vue';
 import { ref } from 'vue';
-const token = useCookie('token')
+import useUserStore from '~/store/useUserStore';
 
+const token = useCookie('token')
+const userStore = useUserStore();
 const url = "http://localhost:3001/api/secure";
 const id = ref('');
 const user = ref('');
@@ -27,6 +29,7 @@ onMounted(() => {
                 user.value = data.token.user;
                 sector.value = data.token.sector;
                 role.value = data.token.role;
+                userStore.setUser(data.token.id, data.token.user, data.token.sector, data.token.role)
                 return
             }
 
@@ -38,17 +41,25 @@ onMounted(() => {
 </script>
 
 <template>
-    <section class="w-screen h-[15vh] bg-blue-400 flex">
-        <figure class="w-[30%] flex items-center justify-center">
-            <img src="~/assets/img/logo.png" alt="Logo" class="">
+    <section class="w-full h-[15vh] bg-blue-500 flex items-center px-4 md:px-8">
+        <!-- Logo -->
+        <figure class="w-1/4 md:w-1/6 flex items-center justify-center">
+            <img src="~/assets/img/logo.png" alt="Logo" class="w-16 h-16 object-contain">
         </figure>
 
-        <article class="">
-            <h1 class="text-xl text-center uppercase">Gesto de demandas</h1>
-            <div>
-                <p class="capitalize">Bem vindo, <span>{{ user }}</span></p>
-                <p class="capitalize">setor: <span>{{ sector }}</span></p>
-                <p class="uppercase">{{ role }}</p>
+        <!-- Informações do Usuário -->
+        <article class="flex-1 flex flex-col justify-center space-y-2 text-white">
+            <h1 class="text-lg md:text-2xl text-center uppercase font-bold">Gestão de Demandas</h1>
+            <div class="text-sm md:text-base text-center md:text-left">
+                <p class="capitalize">
+                    Bem-vindo, <span class="font-semibold">{{ user }}</span>
+                </p>
+                <p class="capitalize">
+                    Setor: <span class="font-semibold">{{ sector }}</span>
+                </p>
+                <p class="uppercase font-medium">
+                    {{ role }}
+                </p>
             </div>
         </article>
     </section>

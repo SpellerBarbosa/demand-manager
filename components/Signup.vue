@@ -7,10 +7,12 @@ const sector = ref("");
 const role = ref("");
 const msgError = ref("");
 const msgSuccess = ref("");
-
 const url = "http://localhost:3001/api/signup";
 
+
+
 const handlerSignup = async() =>{
+
     const response = await fetch(url,{
         method:'POST',
         headers:{
@@ -26,10 +28,14 @@ const handlerSignup = async() =>{
 
     const data = await response.json();
 
-    if(!response.ok){
+    if(response.ok){
         msgSuccess.value = data.msg;
         setTimeout(() => {
-            msgSuccess.value=""
+            msgSuccess.value="";
+            user.value = "";
+            password.value = "";
+            sector.value = "";
+            role.value = "";
         }, 2000);
     }else{
         msgError.value = data.msg;
@@ -46,6 +52,8 @@ const handlerSignup = async() =>{
     ">
         <form class="flex  flex-col w-[80%] h-[80%] bg-white rounded-2xl items-center justify-evenly
         " @submit.prevent="handlerSignup()">
+            <h1 class="text-xl font-bold tracking-wider">Cadastro</h1>
+
             <label for="user" class="flex  flex-col w-[80%] text-lg">Usuario
                 <input type="text" id="user" placeholder="Digite o usuario" v-model="user" class="mt-5 border-b-2 outline-none border-b-blue-300 text-center">
             </label>
@@ -66,5 +74,15 @@ const handlerSignup = async() =>{
             </select>
             <button class="w-[40%] h-12 bg-blue-300 rounded-2xl">Cadastrar</button>
         </form>
+        <span
+            class="w-[90%] h-[6vh] bg-red-500 absolute top-2 rounded-3xl overflow-hidden text-white flex items-center justify-center animate-popup lg:w-[40%]"
+            v-if="msgError">{{ msgError }}
+            <div class="w-screen h-1 bg-white absolute bottom-0 animate-regressive"></div>
+        </span>
+        <span
+            class="w-[90%] h-[6vh] bg-green-500 absolute top-2 rounded-3xl overflow-hidden text-white flex items-center justify-center animate-popup lg:w-[40%]"
+            v-if="msgSuccess">{{ msgSuccess }}
+            <div class="w-screen h-1 bg-white absolute bottom-0 animate-regressive"></div>
+        </span>
     </section>
 </template>
