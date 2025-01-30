@@ -2,96 +2,54 @@
 import { ref } from 'vue';
 import useMenuStore from '~/store/useMenuStore';
 
-const token = useCookie('token')
-const useMenu = useMenuStore();
-const url = "http://localhost:3001/api/secure";
-let id = ref('');
-let user = ref('');
-let sector = ref('');
-let role = ref('');
+const toggleMenu = ref(false);
+const useMenu = useMenuStore()
 
-onMounted(() => {
-    watchEffect(async () => {
-        try {
-
-            const response = await fetch(url, {
-                method: "POST",
-                headers: {
-                    'Authorization': `Bearer ${token.value}`
-                }
-            })
-
-            const data = await response.json();
-
-            if(response.ok){
-                id.value = data.token.id;
-                user.value = data.token.user;
-                sector.value = data.token.sector;
-                role.value = data.token.role;
-                return
-            }
-
-        } catch (error) {
-            throw new Error(error.message);
-        }
-    })
-})
-
-
+const openMenu = () => {
+    toggleMenu.value = !toggleMenu.value;
+}
 </script>
 
 <template>
-    <nav class="w-full h-16 bg-blue-500 shadow-lg">
-        <ul class="w-full h-full flex justify-around items-center">
-            <!-- Home -->
-            <li 
-                class="flex flex-col items-center justify-center text-white cursor-pointer hover:bg-blue-600 p-2 rounded-md transition-all duration-300"
-                @click="useMenu.setMenu('home')">
-                <img class="w-6 h-6" src="~/assets/img/home.png" alt="Home">
-                <span class="text-xs mt-1">Home</span>
-            </li>
-
-            <!-- Cadastro -->
-            <li 
-                v-if="role === 'admin'"
-                class="flex flex-col items-center justify-center text-white cursor-pointer hover:bg-blue-600 p-2 rounded-md transition-all duration-300"
-                @click="useMenu.setMenu('signup')">
-                <img class="w-6 h-6" src="~/assets/img/cadastro.png" alt="Cadastro">
-                <span class="text-xs mt-1">Cadastro</span>
-            </li>
-
-            <!-- Solicitações -->
-            <li 
-                v-if="role !== 'motoboy' && role !== 'funcionario'"
-                class="flex flex-col items-center justify-center text-white cursor-pointer hover:bg-blue-600 p-2 rounded-md transition-all duration-300"
-                @click="useMenu.setMenu('requests')">
-                <img class="w-6 h-6" src="~/assets/img/solicitacoes.png" alt="Solicitações">
-                <span class="text-xs mt-1">Solicitações</span>
-            </li>
-
-            <!-- Solicitar -->
-            <li 
-                v-if="role !== 'admin' && role !== 'motoboy'"
-                class="flex flex-col items-center justify-center text-white cursor-pointer hover:bg-blue-600 p-2 rounded-md transition-all duration-300"
-                @click="useMenu.setMenu('requests')">
-                <img class="w-6 h-6" src="~/assets/img/solicitacao.png" alt="Solicitar">
-                <span class="text-xs mt-1">Solicitar</span>
-            </li>
-
-            <!-- Status -->
-            <li 
-                class="flex flex-col items-center justify-center text-white cursor-pointer hover:bg-blue-600 p-2 rounded-md transition-all duration-300">
-                <img class="w-6 h-6" src="~/assets/img/status.png" alt="Status">
-                <span class="text-xs mt-1">Status</span>
-            </li>
-
-            <!-- Agenda -->
-            <li 
-                v-if="role === 'motoboy'"
-                class="flex flex-col items-center justify-center text-white cursor-pointer hover:bg-blue-600 p-2 rounded-md transition-all duration-300">
-                <img class="w-6 h-6" src="~/assets/img/agenda.png" alt="Agenda">
-                <span class="text-xs mt-1">Agenda</span>
-            </li>
-        </ul>
-    </nav>
+    <section class="w-screen h-[10vh] bg-blue-500 relative">
+        <button class=" w-12 h-12  flex flex-col justify-evenly items-center absolute bottom-1 right-1" @click="openMenu">
+            <span class="w-[90%] h-0.5 block bg-black transition-all duration-300"
+                :class="toggleMenu ? 'translate-y-3 rotate-[42deg]' : ''"></span>
+            <span class="w-[90%] h-0.5 block bg-black transition-all duration-300"
+                :class="toggleMenu ? 'opacity-0 -translate-2' : 'opacity-100 translate-y-0'"></span>
+            <span class="w-[90%] h-0.5 block bg-black transition-all duration-300"
+                :class="toggleMenu ? '-translate-y-3 rotate-[-42deg]' : ''"></span>
+        </button>
+        
+        <nav  class="w-[100%] h-[auto] border transition-all duration-500 ease-in-out transform absolute right-0 bottom-[10vh] shadow-lg rounded-lg bg-blue-500/85  text-white" 
+             :class="toggleMenu ? 'opacity-100 scale-100' : 'opacity-0 scale-90 pointer-events-none'">
+            <ul class="w-full flex gap-1.5 flex-wrap justify-center transition-all duration-300"
+                :class="toggleMenu ? 'flex' : 'hidden'">
+                <li class="w-[75px] h-[75px]  flex flex-col-reverse items-center justify-center" @click="()=>{openMenu(); useMenu.setMenu('home')}">
+                    <span>Inicio</span>
+                    <img class="w-8" src="~/assets/img/home.png" alt="">
+                </li>
+                <li class="w-[75px] h-[75px]  flex flex-col-reverse items-center justify-center" @click="()=>{openMenu(); useMenu.setMenu('signup')}">
+                    Cadastro
+                    <img class="w-8" src="~/assets/img/cadastro.png" alt="">
+                </li>
+                <li class="w-[75px] h-[75px]  flex flex-col-reverse items-center justify-center"@click="()=>{openMenu(); useMenu.setMenu('request')}">
+                    Solicitar
+                    <img class="w-8" src="~/assets/img/solicitacao.png" alt="">
+                </li>
+                <li class="w-[75px] h-[75px]  flex flex-col-reverse items-center justify-center" @click="()=>{openMenu(); useMenu.setMenu('requests')}">
+                    Solicitações
+                    <img class="w-8" src="~/assets/img/solicitacoes.png" alt="">
+                </li>
+                <li class="w-[75px] h-[75px]  flex flex-col-reverse items-center justify-center" @click="()=>{openMenu(); useMenu.setMenu('agenda')}">
+                    Agendar
+                    <img class="w-8" src="~/assets/img/agenda.png" alt="">
+                </li>
+                <li class="w-[75px] h-[75px]  flex flex-col-reverse items-center justify-center"@click="()=>{openMenu(); useMenu.setMenu('agenda')}">
+                    Agenda
+                    <img class="w-8" src="~/assets/img/home.png" alt="">
+                </li>
+            </ul>
+        </nav>
+    </section>
 </template>

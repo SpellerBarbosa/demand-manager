@@ -31,3 +31,8 @@
     background-size: contain;
     
 }
+
+body{
+    padding: 0;
+    margin: 0;
+}
