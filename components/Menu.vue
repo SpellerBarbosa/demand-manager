@@ -11,7 +11,7 @@ const openMenu = () => {
 </script>
 
 <template>
-    <section class="w-screen h-[10vh] bg-blue-500 relative">
+    <section class="w-screen h-[10vh] bg-blue-500 fixed bottom-0">
         <button class=" w-12 h-12  flex flex-col justify-evenly items-center absolute bottom-1 right-1" @click="openMenu">
             <span class="w-[90%] h-0.5 block bg-black transition-all duration-300"
                 :class="toggleMenu ? 'translate-y-3 rotate-[42deg]' : ''"></span>
