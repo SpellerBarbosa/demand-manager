@@ -70,7 +70,7 @@ const handleLogin = async () => {
 
        if(sendToken.ok){
         setTimeout(() => {
-            router.push("/dashboard")
+            router.push("/home")
         }, 3000);
        }
 
@@ -85,8 +85,9 @@ const handleLogin = async () => {
 
 </script>
 
-<template>
+<template>    
     <section class="w-screen h-screen bg-blue-400 flex flex-col items-center justify-center lg:flex-row">
+
         <figure class="w-[80%] h-[43vh] flex items-center justify-center md:h-[40vh]">
             <img src="~/assets/img/logo.png" alt="Logo" class=" w-[100%] md:w-[90%]">
         </figure>

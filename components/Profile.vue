@@ -11,33 +11,32 @@ const user = ref('');
 const sector = ref('');
 const role = ref('');
 
-onMounted(() => {
-    watchEffect(async () => {
-        try {
 
-            const response = await fetch(url, {
-                method: "POST",
-                headers: {
-                    'Authorization': `Bearer ${token.value}`
-                }
-            })
+watchEffect(async () => {
+    try {
 
-            const data = await response.json();
-
-            if(response.ok){
-                id.value = data.token.id;
-                user.value = data.token.user;
-                sector.value = data.token.sector;
-                role.value = data.token.role;
-                userStore.setUser(data.token.id, data.token.user, data.token.sector, data.token.role)
-                return
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                'Authorization': `Bearer ${token.value}`
             }
+        })
 
-        } catch (error) {
-            throw new Error(error.message);
+        const data = await response.json();
+        if (response.ok) {
+            id.value = data.token.id;
+            user.value = data.token.user;
+            sector.value = data.token.sector;
+            role.value = data.token.role;
+            userStore.setUser(data.token.id, data.token.user, data.token.sector, data.token.role)
+            return
         }
-    })
+
+    } catch (error) {
+        console.error(error);
+    }
 })
+
 </script>
 
 <template>

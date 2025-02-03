@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 
 const useMenuStore = defineStore('menu',{
     state:() =>({
-        startMenu: "home"
+        startMenu: ""
     }),
     actions:{
         setMenu(startMenu){

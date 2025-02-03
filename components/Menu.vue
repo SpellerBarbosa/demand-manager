@@ -1,9 +1,11 @@
 <script setup>
 import { ref } from 'vue';
 import useMenuStore from '~/store/useMenuStore';
+import { useRouter } from 'vue-router';
 
 const toggleMenu = ref(false);
-const useMenu = useMenuStore()
+const useMenu = useMenuStore();
+const router = useRouter();
 
 const openMenu = () => {
     toggleMenu.value = !toggleMenu.value;
@@ -11,8 +13,8 @@ const openMenu = () => {
 </script>
 
 <template>
-    <section class="w-screen h-[10vh] bg-blue-500 fixed bottom-0">
-        <button class=" w-12 h-12  flex flex-col justify-evenly items-center absolute bottom-1 right-1" @click="openMenu">
+    <section class="w-screen h-[5vh] bg-blue-500 absolute">
+        <button class=" w-12 h-12  flex flex-col justify-evenly items-center absolute bottom-0 right-2" @click="openMenu">
             <span class="w-[90%] h-0.5 block bg-black transition-all duration-300"
                 :class="toggleMenu ? 'translate-y-3 rotate-[42deg]' : ''"></span>
             <span class="w-[90%] h-0.5 block bg-black transition-all duration-300"
@@ -21,23 +23,23 @@ const openMenu = () => {
                 :class="toggleMenu ? '-translate-y-3 rotate-[-42deg]' : ''"></span>
         </button>
         
-        <nav  class="w-[100%] h-[auto] border transition-all duration-500 ease-in-out transform absolute right-0 bottom-[10vh] shadow-lg rounded-lg bg-blue-500/85  text-white" 
+        <nav  class="w-[100%] h-[auto] border transition-all duration-500 ease-in-out transform absolute right-0 bottom-[5vh] shadow-lg rounded-lg bg-blue-500/85  text-white" 
              :class="toggleMenu ? 'opacity-100 scale-100' : 'opacity-0 scale-90 pointer-events-none'">
             <ul class="w-full flex gap-1.5 flex-wrap justify-center transition-all duration-300"
                 :class="toggleMenu ? 'flex' : 'hidden'">
-                <li class="w-[75px] h-[75px]  flex flex-col-reverse items-center justify-center" @click="()=>{openMenu(); useMenu.setMenu('home')}">
+                <li class="w-[75px] h-[75px]  flex flex-col-reverse items-center justify-center" @click="()=>{openMenu(); router.push('/home')}">
                     <span>Inicio</span>
                     <img class="w-8" src="~/assets/img/home.png" alt="">
                 </li>
-                <li class="w-[75px] h-[75px]  flex flex-col-reverse items-center justify-center" @click="()=>{openMenu(); useMenu.setMenu('signup')}">
+                <li class="w-[75px] h-[75px]  flex flex-col-reverse items-center justify-center" @click="()=>{openMenu(); router.push('/signup')}">
                     Cadastro
                     <img class="w-8" src="~/assets/img/cadastro.png" alt="">
                 </li>
-                <li class="w-[75px] h-[75px]  flex flex-col-reverse items-center justify-center"@click="()=>{openMenu(); useMenu.setMenu('request')}">
+                <li class="w-[75px] h-[75px]  flex flex-col-reverse items-center justify-center"@click="()=>{openMenu(); router.push('/request')}">
                     Solicitar
                     <img class="w-8" src="~/assets/img/solicitacao.png" alt="">
                 </li>
-                <li class="w-[75px] h-[75px]  flex flex-col-reverse items-center justify-center" @click="()=>{openMenu(); useMenu.setMenu('requests')}">
+                <li class="w-[75px] h-[75px]  flex flex-col-reverse items-center justify-center" @click="()=>{openMenu(); router.push('/requests')}">
                     Solicitações
                     <img class="w-8" src="~/assets/img/solicitacoes.png" alt="">
                 </li>

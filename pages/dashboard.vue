@@ -1,10 +1,10 @@
 <script setup>
 import Profile from '~/components/Profile.vue';
-import Home from '~/components/Home.vue';
-import Signup from '~/components/Signup.vue';
+import Home from '~/pages/Home.vue';
+import Signup from '~/pages/Signup.vue';
 import useMenuStore from '~/store/useMenuStore';
-import Request from '~/components/Request.vue';
-import Requests from '~/components/Requests.vue';
+import Request from '~/pages/Request.vue';
+import Requests from '~/pages/Requests.vue';
 import Menu from '~/components/Menu.vue';
 
 const useMenu = useMenuStore();
