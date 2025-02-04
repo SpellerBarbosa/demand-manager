@@ -93,12 +93,12 @@ const handleLogin = async () => {
         </figure>
         <form class="w-[95%] h-[55vh] flex flex-col items-center justify-center bg-white rounded-3xl lg:h-[100%] lg:rounded-none"
             @submit.prevent="handleLogin()">
-            <label for="user" class="flex tracking-wider  flex-col w-[90%] text-lg font-medium mb-5">Usuario
+            <label for="user" class="flex tracking-wider  flex-col w-[90%] text-lg font-medium mb-5 uppercase">Usuario
                 <input type="text" placeholder="Digite seu usuario" id="user"
                     class="mt-3 border-b-2 border-blue-300 text-center text-lg tracking-wider outline-none"
                     v-model="user">
             </label>
-            <label for="password" class=" tracking-wider flex flex-col w-[90%] text-lg font-medium mb-5">Senha
+            <label for="password" class=" tracking-wider flex flex-col w-[90%] text-lg font-medium mb-5 uppercase">Senha
                 <input type="password" placeholder="Digite sua senha" id="password"
                     class="mt-3 border-b-2 border-blue-300 text-center text-lg tracking-wider outline-none"
                     v-model="password">

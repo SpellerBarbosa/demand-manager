@@ -1,6 +1,9 @@
 <script setup>
 import { ref } from 'vue';
 import useUserStore from '~/store/useUserStore';
+import Menu from '~/components/Menu.vue';
+import Profile from '~/components/Profile.vue';
+
 
 const date = new Date();
 const day = date.getDate();
@@ -67,7 +70,8 @@ const handleRequest = async () =>{
 </script>
 
 <template>
-    <section class="w-full min-h-[75vh] bg-gray-200 flex items-center justify-center p-4">
+    <Profile/>
+    <section class="w-full min-h-[77vh] bg-gray-200 flex items-center justify-center p-4">
         <form class="w-full max-w-xl bg-white rounded-2xl shadow-lg p-6 flex flex-col space-y-6" @submit.prevent="handleRequest()" >
             <!-- Título -->
             <h1 class="text-center text-2xl sm:text-3xl font-bold tracking-wide text-gray-700">Solicitar</h1>
@@ -130,6 +134,7 @@ const handleRequest = async () =>{
             <div class="w-screen h-1 bg-white absolute bottom-0 animate-regressive"></div>
         </span>
     </section>
+    <Menu />
 </template>
 
 

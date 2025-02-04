@@ -2,6 +2,7 @@
 import { watchEffect } from 'vue';
 import { ref } from 'vue';
 import useMenuStore from '~/store/useMenuStore';
+import useUserStore from '~/store/useUserStore';
 import Error from '~/components/smallComponents/Error.vue';
 import Success from '~/components/smallComponents/Success.vue';
 import Menu from '~/components/Menu.vue';
@@ -14,6 +15,7 @@ const requests = ref([]);
 const date_planned = ref();
 const new_status = ref();
 const useMenu = useMenuStore();
+const useUser = useUserStore();
 const msgError = ref();
 const msgSuccess = ref();
 const request = ref()

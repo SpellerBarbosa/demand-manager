@@ -6,7 +6,7 @@ import Profile from '~/components/Profile.vue';
 <template>
     <section>
         <Profile/>
-        <section class="bg-home  h-[75vh]">
+        <section class="bg-home  h-[77vh]">
         </section>
         <Menu/>
     </section>

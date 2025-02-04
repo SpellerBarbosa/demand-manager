@@ -1,5 +1,8 @@
 <script setup>
 import { ref } from 'vue';
+import Menu from '~/components/Menu.vue';
+import Profile from '~/components/Profile.vue';
+
 
 const user = ref("");
 const password = ref("");
@@ -48,7 +51,8 @@ const handlerSignup = async() =>{
 </script>
 
 <template>
-    <section class="w-screen h-[75vh] flex items-center justify-center bg-gray-100
+    <Profile />
+    <section class="w-screen h-[77vh] flex items-center justify-center bg-gray-100
     ">
         <form class="flex  flex-col w-[80%] h-[80%] bg-white rounded-2xl items-center justify-evenly
         " @submit.prevent="handlerSignup()">
@@ -85,4 +89,5 @@ const handlerSignup = async() =>{
             <div class="w-screen h-1 bg-white absolute bottom-0 animate-regressive"></div>
         </span>
     </section>
+    <Menu />
 </template>
