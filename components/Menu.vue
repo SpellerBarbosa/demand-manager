@@ -54,7 +54,7 @@ const openMenu = () => {
                     Status
                     <img class="w-8" src="~/assets/img/status.png" alt="">
                 </li>
-                <li class="w-[75px] h-[75px]  flex flex-col-reverse items-center justify-center hidden"
+                <li class="w-[75px] h-[75px]  flex-col-reverse items-center justify-center hidden"
                     @click="()=>{openMenu(); useMenu.setMenu('agenda')}"
                     
                     >
