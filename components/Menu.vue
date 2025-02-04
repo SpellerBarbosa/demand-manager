@@ -8,7 +8,6 @@ const toggleMenu = ref(false);
 const useMenu = useMenuStore();
 const useUser = useUserStore();
 const router = useRouter();
-console.log(useUser.role)
 const openMenu = () => {
     toggleMenu.value = !toggleMenu.value;
 }
