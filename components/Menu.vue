@@ -8,8 +8,14 @@ const toggleMenu = ref(false);
 const useMenu = useMenuStore();
 const useUser = useUserStore();
 const router = useRouter();
+const token = useCookie('token')
 const openMenu = () => {
     toggleMenu.value = !toggleMenu.value;
+}
+
+const logout = () =>{
+    token.value = "";
+    router.push('/');
 }
 </script>
 
@@ -50,16 +56,16 @@ const openMenu = () => {
                     Solicitações
                     <img class="w-8" src="~/assets/img/solicitacoes.png" alt="">
                 </li>
-                <li class="w-[75px] h-[75px]  flex flex-col-reverse items-center justify-center" @click="()=>{openMenu(); useMenu.setMenu('agenda')}">
+                <li class="w-[75px] h-[75px]  flex flex-col-reverse items-center justify-center" @click="()=>{openMenu(); router.push('/status')}">
                     Status
                     <img class="w-8" src="~/assets/img/status.png" alt="">
                 </li>
-                <li class="w-[75px] h-[75px]  flex-col-reverse items-center justify-center hidden"
-                    @click="()=>{openMenu(); useMenu.setMenu('agenda')}"
+                <li class="w-[75px] h-[75px]  flex-col-reverse items-center justify-center flex"
+                    @click="()=>{openMenu(); logout();}"
                     
                     >
-                    Agenda
-                    <img class="w-8" src="~/assets/img/home.png" alt="">
+                    Sair
+                    <img class="w-8" src="~/assets/img/logout.png" alt="">
                 </li>
             </ul>
         </nav>
