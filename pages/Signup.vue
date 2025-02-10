@@ -12,7 +12,7 @@ const sector = ref("");
 const role = ref("");
 const msgError = ref("");
 const msgSuccess = ref("");
-const url = "http://localhost:3001/api/signup";
+const url = "https://api-rm.vercel.app/api/signup";
 
 
 

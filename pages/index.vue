@@ -7,8 +7,8 @@ const password = ref("");
 const buttonText = ref("");
 const msgError = ref("");
 const msgSuccess = ref("");
-const url = "http://localhost:3001/api/login";
-const secureRouter = 'http://localhost:3001/api/secure';
+const url = "https://api-rm.vercel.app/api/login";
+const secureRouter = 'https://api-rm.vercel.app/api/secure';
 const router = useRouter()
 const token = useCookie("token", {
     maxAge: 60 * 60,

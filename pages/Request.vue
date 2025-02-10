@@ -19,7 +19,7 @@ const description = ref("");
 const userStore = useUserStore();
 const msgError = ref("");
 const msgSuccess = ref("");
-const url = 'http://localhost:3001/api/request';
+const url = 'https://api-rm.vercel.app/api/request';
 
 const handleRequest = async () =>{
     if(!type_service.value){
