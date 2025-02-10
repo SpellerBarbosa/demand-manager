@@ -9,8 +9,8 @@ definePageMeta({
 });
 
 
-const secureRouter = 'http://localhost:3001/api/secure';
-const statusRouter = 'http://localhost:3001/api/status';
+const secureRouter = 'https://api-rm.vercel.app/api/secure';
+const statusRouter = 'https://api-rm.vercel.app/api/status';
 const token = useCookie('token');
 const myRequest = ref([]);
 

@@ -5,7 +5,7 @@ import useUserStore from '~/store/useUserStore';
 
 const token = useCookie('token')
 const userStore = useUserStore();
-const url = "http://localhost:3001/api/secure";
+const url = "https://api-rm.vercel.app/api/secure";
 const id = ref('');
 const user = ref('');
 const sector = ref('');

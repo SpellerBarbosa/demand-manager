@@ -12,8 +12,8 @@ definePageMeta({
 });
 
 
-const url = 'http://localhost:3001/api/requests';
-const editUrl = 'http://localhost:3001/api/schedule';
+const url = 'https://api-rm.vercel.app/api/requests';
+const editUrl = 'https://api-rm.vercel.app/api/schedule';
 const requests = ref([]);
 const date_planned = ref();
 const new_status = ref();
