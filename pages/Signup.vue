@@ -2,7 +2,9 @@
 import { ref } from 'vue';
 import Menu from '~/components/Menu.vue';
 import Profile from '~/components/Profile.vue';
-
+definePageMeta({
+    middleware:'auth'
+});
 
 const user = ref("");
 const password = ref("");
@@ -52,7 +54,7 @@ const handlerSignup = async() =>{
 
 <template>
     <Profile />
-    <section class="w-screen h-[77vh] flex items-center justify-center bg-gray-100
+    <section class="w-screen h-[77vh] flex items-center justify-center bg-gray-100 absolute top-0 lg:w-[70%] lg:ml-[30%] lg:h-[100vh]
     ">
         <form class="flex  flex-col w-[80%] h-[80%] bg-white rounded-2xl items-center justify-evenly
         " @submit.prevent="handlerSignup()">

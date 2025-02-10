@@ -68,7 +68,7 @@ const handleLogin = async () => {
 
        const dataSecure = await sendToken.json();
 
-       if(sendToken.ok){
+       if(dataSecure){
         setTimeout(() => {
             router.push("/home")
         }, 3000);

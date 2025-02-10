@@ -7,6 +7,9 @@ import Error from '~/components/smallComponents/Error.vue';
 import Success from '~/components/smallComponents/Success.vue';
 import Menu from '~/components/Menu.vue';
 import Profile from '~/components/Profile.vue';
+definePageMeta({
+    middleware:'auth'
+});
 
 
 const url = 'http://localhost:3001/api/requests';
@@ -70,16 +73,15 @@ const editRequest = async (requestId) => {
 
 const viewRequest = (requestId) =>{
     request.value = requestId
-    console.log( request.value)
 }
 </script>
 
 <template>
     <section>
         <Profile />
-        <section class="w-screen min-h-[75vh] p-6 bg-gray-50">
+        <section class="w-screen min-h-[75vh] p-6 bg-gray-50 absolute top-0 lg:w-[70%] lg:ml-[30%] lg:h-[100vh]">
             <h1 class="text-3xl font-bold text-center mt-5 text-gray-800 mb-8">Solicitações recebidas</h1>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto h-[75vh]">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto h-[75vh] lg:flex lg:flex-col">
                 <form v-for="(request, index) in requests" :key="index"
                     class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300  relative"
                     @submit.prevent="editRequest(request.id)">

@@ -4,6 +4,9 @@ import { ref } from 'vue';
 import { watchEffect } from 'vue';
 import Menu from '~/components/Menu.vue';
 import Profile from '~/components/Profile.vue';
+definePageMeta({
+    middleware:'auth'
+});
 
 
 const secureRouter = 'http://localhost:3001/api/secure';
@@ -32,7 +35,6 @@ const requests = async () => {
 
         const dataRequest = await request.json();
         myRequest.value = dataRequest.requestUser
-        console.log(myRequest.value)
     }
 }
 
@@ -44,9 +46,9 @@ watchEffect(() => {
 <template>
     <section>
         <Profile />
-        <section class="w-screen h-[77vh] overflow-y-auto">
-            <div v-for="(request, index) in myRequest" :key="index"
-                class="bg-white rounded-2xl shadow-lg p-6 mb-6 transition-transform transform hover:scale-105 hover:shadow-xl">
+        <section class="w-screen h-[77vh] overflow-y-auto absolute top-0 lg:w-[70%] lg:ml-[30%] lg:h-[100vh]">
+            <div v-for="(request, index) in myRequest.filter(req => req.status === 'pendente')" :key="index"
+                class="bg-white rounded-2xl shadow-lg p-6 mb-6 transition-transform transform hover:shadow-xl">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
                     <!-- Data Solicitação -->
                     <div class="space-y-1">
