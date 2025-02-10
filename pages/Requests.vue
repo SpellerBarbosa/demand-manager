@@ -79,7 +79,7 @@ const viewRequest = (requestId) =>{
 <template>
     <section>
         <Profile />
-        <section class="w-screen min-h-[75vh] p-6 bg-gray-50 absolute top-0 lg:w-[70%] lg:ml-[30%] lg:h-[100vh]">
+        <section class="w-screen min-h-[75vh] p-6 bg-gray-50 lg:absolute top-0 lg:w-[70%] lg:ml-[30%] lg:h-[100vh]">
             <h1 class="text-3xl font-bold text-center mt-5 text-gray-800 mb-8">Solicitações recebidas</h1>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto h-[75vh] lg:flex lg:flex-col">
                 <form v-for="(request, index) in requests" :key="index"

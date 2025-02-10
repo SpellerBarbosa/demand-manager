@@ -46,7 +46,7 @@ watchEffect(() => {
 <template>
     <section>
         <Profile />
-        <section class="w-screen h-[77vh] overflow-y-auto absolute top-0 lg:w-[70%] lg:ml-[30%] lg:h-[100vh]">
+        <section class="w-screen h-[77vh] overflow-y-auto lg:absolute top-0 lg:w-[70%] lg:ml-[30%] lg:h-[100vh]">
             <div v-for="(request, index) in myRequest.filter(req => req.status === 'pendente')" :key="index"
                 class="bg-white rounded-2xl shadow-lg p-6 mb-6 transition-transform transform hover:shadow-xl">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
