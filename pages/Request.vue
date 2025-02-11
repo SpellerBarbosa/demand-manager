@@ -76,7 +76,7 @@ const handleRequest = async () => {
 
 <template>
     <Profile/>
-    <section class="w-full min-h-[77vh] bg-gray-200 flex items-center justify-center p-4 absolute top-0 lg:w-[70%] lg:ml-[30%] lg:h-[100vh]">
+    <section class="w-full min-h-[77vh] bg-gray-200 flex items-center justify-center p-4 lg:absolute top-0 lg:w-[70%] lg:ml-[30%] lg:h-[100vh]">
         <form class="w-full max-w-xl bg-white rounded-2xl shadow-lg p-6 flex flex-col space-y-6" @submit.prevent="handleRequest()" >
             <!-- Título -->
             <h1 class="text-center text-2xl sm:text-3xl font-bold tracking-wide text-gray-700">Solicitar</h1>
