@@ -91,7 +91,7 @@ const viewRequest = (requestId) => {
                 <form v-for="(request, index) in requests" :key="index"
                     class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300  relative"
                     @submit.prevent="editRequest(request.id)">
-                    <div class="space-y-4 cursor-pointer " @click="togleDetails(request.id)">
+                    <div class="space-y-4" @click="togleDetails(request.id)">
                         <div :class="details[request.id] ? 'visible': 'hidden'">
                             <label for="data-solicitacao" class="block text-sm font-medium text-gray-700">ID da
                                 solicitação:</label>
