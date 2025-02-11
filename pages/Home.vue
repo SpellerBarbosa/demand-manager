@@ -10,7 +10,7 @@ definePageMeta({
 <template>
     <section>
         <Profile/>
-        <section class="bg-home  h-[77vh]  w-screen lg:w-[70%] lg:h-[100vh] lg:ml-[30vh] border lg:absolute lg:top-0 lg:right-0">
+        <section class="bg-home  h-[77vh]  w-screen lg:w-[70%] lg:h-[100vh] lg:ml-[30vh] lg:absolute lg:top-0 lg:right-0">
         </section>
         <Menu/>
     </section>

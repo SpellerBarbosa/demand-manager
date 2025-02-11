@@ -13,6 +13,7 @@ const secureRouter = 'https://api-rm.vercel.app/api/secure';
 const statusRouter = 'https://api-rm.vercel.app/api/status';
 const token = useCookie('token');
 const myRequest = ref([]);
+const details = ref({});
 
 const requests = async () => {
     const response = await fetch(secureRouter, {
@@ -41,15 +42,19 @@ const requests = async () => {
 watchEffect(() => {
     requests();
 })
+
+const toggleDetails = (requestId) =>{
+    details.value[requestId] = !details.value[requestId]
+}
 </script>
 
 <template>
     <section>
         <Profile />
-        <section class="w-screen h-[77vh] overflow-y-auto absolute top-0 lg:w-[70%] lg:ml-[30%] lg:h-[100vh]">
+        <section class="w-screen h-[77vh] overflow-y-auto lg:absolute top-0 lg:w-[70%] lg:ml-[30%] lg:h-[100vh]">
             <div v-for="(request, index) in myRequest.filter(req => req.status === 'pendente')" :key="index"
                 class="bg-white rounded-2xl shadow-lg p-6 mb-6 transition-transform transform hover:shadow-xl">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4 cursor-pointer" @click="toggleDetails(request.id)">
                     <!-- Data Solicitação -->
                     <div class="space-y-1">
                         <label class="block text-sm font-semibold text-gray-700">Data Solicitação:</label>
@@ -71,14 +76,15 @@ watchEffect(() => {
                 </div>
 
                 <!-- Tipo de Serviço -->
-                <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                <h3 class="text-lg font-semibold text-gray-900 mb-2" :class="details[request.id] ? 'visible': 'hidden'">
                     <span class="text-gray-600">Tipo de Serviço: </span> {{ request.type_service }}
                 </h3>
 
                 <!-- Descrição -->
-                <h4 class="text-sm font-semibold text-gray-700">Serviço que será executado:</h4>
+                <h4 class="text-sm font-semibold text-gray-700" :class="details[request.id] ? 'visible': 'hidden'">Serviço que será executado:</h4>
                 <textarea disabled v-model="request.description"
                     class="w-full bg-gray-100 rounded-md p-3 text-gray-600 resize-none cursor-not-allowed border border-gray-200"
+                    :class="details[request.id] ? 'visible': 'hidden'"
                     rows="4"></textarea>
             </div>
         </section>

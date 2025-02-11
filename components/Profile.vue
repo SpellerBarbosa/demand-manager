@@ -40,7 +40,7 @@ watchEffect(async () => {
 </script>
 
 <template>
-    <section class="w-full h-[15vh] bg-blue-500 flex items-center px-4 md:px-8 lg:w-[30%] lg:border-b-1 lg: lg:h-[30vh]">
+    <section class="w-full h-[15vh] bg-blue-500 flex items-center px-4 md:px-8 lg:w-[30%] lg:border-b-2 lg:border-white lg: lg:h-[30vh]">
         <!-- Logo -->
         <figure class="w-1/4 md:w-1/6 flex items-center justify-center">
             <img src="~/assets/img/logo.png" alt="Logo" class="w-16 h-16 object-contain">
